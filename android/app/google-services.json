@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "266581121156",
+    "project_id": "fatec-aula1234",
+    "storage_bucket": "fatec-aula1234.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266581121156:android:73387abb78dcfcfad70ad1",
+        "android_client_info": {
+          "package_name": "com.example.firebase_example"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVGTn15ZL479DdVkLMkOI98qPu_6CeEKA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
