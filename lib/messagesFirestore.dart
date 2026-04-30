@@ -1,3 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_example/firebase_options.dart';
+import 'package:firebase_example/models/mensagens.dart';
+
 import '/widgets/widgetsInput.dart';
 import 'package:flutter/material.dart';
 
@@ -18,10 +23,18 @@ class _MensagensFirestoreState extends State<MensagensFirestore> {
   final _user = TextEditingController();
   final _msg = TextEditingController();
   final _qtdmsg = TextEditingController();
-   List _resultsList = [];
+  List _resultsList = [];
+
+  Future<void> inicializarFirebase() async {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform
+      );
+      Firebase.initializeApp().whenComplete(() => print("Conectado"));
+  }
 
   @override
   Widget build(BuildContext context) {
+    inicializarFirebase();
     _user.text=widget.user.toString();
     _friend.text=widget.friend.toString();
     return Scaffold(
@@ -64,6 +77,18 @@ class _MensagensFirestoreState extends State<MensagensFirestore> {
 
 
   void _clicksend(BuildContext ctx) {
+    Mensagens ms = new Mensagens();
+    ms.friend = _friend.text.toString().trim();
+    ms.user = _user.text.toString().trim();
+    ms.msg = _msg.text.toString().trim();
+    ms.dt = DateTime.now();
+
+    CollectionReference instance = FirebaseFirestore.instance.collection('msg');
+    instance
+        .doc(ms.dt.toString().trim())
+        .set(ms.toJson())
+        .then((value) => print(''"Enviado"))
+        .catchError((error) => print("Deu erro"));
 
     _msg.text="";
     _qtdmsg.text="1";

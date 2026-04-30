@@ -1,3 +1,4 @@
+import 'package:firebase_example/messagesFirestore.dart';
 import 'package:flutter/material.dart';
 import 'tela_Adicionar.dart';
 import 'tela_consulta.dart';
@@ -20,7 +21,14 @@ class Menu extends StatelessWidget {
             icon: Icon(Icons.line_style),
             onPressed:(){
               _abreTelaListar(context, TelaConsulta());
-              },
+            },
+            tooltip: 'Clique para visualizar os registros',
+          ),
+          IconButton(
+            icon: Icon(Icons.new_label),
+            onPressed:(){
+              _abreTelaListar(context, MensagensFirestore('Eu', 'Vc'));
+            },
             tooltip: 'Clique para visualizar os registros',
           )
         ],
